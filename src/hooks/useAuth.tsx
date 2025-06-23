@@ -1,4 +1,3 @@
-
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { User } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
@@ -70,11 +69,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (error) throw error;
       
       if (data.user) {
-        // Create user profile in our custom users table
+        // Create user profile in our custom users table with the correct auth.uid() as id
         const { error: profileError } = await supabase
           .from('users')
           .insert({
-            id: data.user.id,
+            id: data.user.id, // Use the auth user id
             email,
             full_name: fullName,
             business_name: businessName,

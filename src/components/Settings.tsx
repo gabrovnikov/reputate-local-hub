@@ -1,9 +1,10 @@
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import { Phone, Clock, Bell, CreditCard, User, HelpCircle } from 'lucide-react';
 
 const Settings: React.FC = () => {
+  const navigate = useNavigate();
   const [whatsappNumber, setWhatsappNumber] = useState('(11) 99999-9999');
   const [notifications, setNotifications] = useState({
     weeklyReports: true,
@@ -30,7 +31,12 @@ const Settings: React.FC = () => {
               <div className="text-sm text-gray-500">joao@restaurante.com</div>
             </div>
           </div>
-          <button className="text-primary text-sm font-medium">Editar Perfil</button>
+          <button 
+            className="text-primary text-sm font-medium"
+            onClick={() => navigate('/edit-profile')}
+          >
+            Editar Perfil
+          </button>
         </div>
 
         {/* Configurações do WhatsApp */}
